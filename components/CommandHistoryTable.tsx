@@ -59,9 +59,16 @@ export function CommandHistoryTable() {
       const url = filter ? `/api/commands?status=${filter}` : `/api/commands`;
       fetch(url)
         .then(r => r.json())
-        .then(d => { setData(d); setLoading(false); })
-        .catch(() => setLoading(false));
-    };
+          .then(d => {
+                  // Fix: kiểm tra trả về có phải array không
+                  setData(Array.isArray(d) ? d : []);
+                  setLoading(false);
+                })
+                .catch(() => {
+                  setData([]); // tránh crash khi network lỗi
+                  setLoading(false);
+                });
+            };
     fetchData();
     const interval = setInterval(fetchData, 3000);
     return () => clearInterval(interval);
