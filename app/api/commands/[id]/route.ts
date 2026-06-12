@@ -4,11 +4,12 @@ import CommandHistory from '@/models/CommandHistory';
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> } // ← thêm Promise
 ) {
   try {
+    const { id } = await params; // ← thêm await
     await connectDB();
-    await CommandHistory.findByIdAndDelete(params.id);
+    await CommandHistory.findByIdAndDelete(id); // ← dùng id thay params.id
     return NextResponse.json({ success: true });
   } catch (err: any) {
     return NextResponse.json({ error: err.message }, { status: 500 });
