@@ -598,7 +598,7 @@ export default function ExhibitionMapViewer({ pose, isMoving }: ExhibitionMapVie
 
     useEffect(() => {
       const img = new Image();
-      img.src = '/my_vietduc_3b_map.png'; // ← đường dẫn file PNG
+      img.src = '/my_vietduc_3b_mapdasua.png'; // ← đường dẫn file PNG
       img.onload = () => { mapImageRef.current = img; };
     }, []);
 
