@@ -1,0 +1,35 @@
+{
+  "totalVisits": 15842,
+  "uniqueVisitors": 8934,
+  "pageViews": {
+    "home": 15842,
+    "events": 6234,
+    "contact": 2145
+  },
+  "dailyVisitors": [
+    { "date": "2024-03-20", "count": 342 },
+    { "date": "2024-03-19", "count": 289 },
+    { "date": "2024-03-18", "count": 312 },
+    { "date": "2024-03-17", "count": 425 },
+    { "date": "2024-03-16", "count": 501 },
+    { "date": "2024-03-15", "count": 478 },
+    { "date": "2024-03-14", "count": 355 }
+  ],
+  "deviceStats": {
+    "mobile": 65,
+    "desktop": 30,
+    "tablet": 5
+  },
+  "trafficSources": {
+    "direct": 4500,
+    "organic": 6234,
+    "social": 3108,
+    "referral": 2000
+  },
+  "robustStats": {
+    "guidedTours": 2145,
+    "questionsAnswered": 8934,
+    "visitorsAssisted": 6234,
+    "systemUptime": 99.8
+  }
+}

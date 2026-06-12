@@ -1,0 +1,65 @@
+{
+  "name": "Tech Summit 2026",
+  "title": "Tech Summit 2026 - Cuộc Gặp Gỡ Công Nghệ",
+  "description": "Khám phá thế giới công nghệ hiện đại và tương tác với các robot thông minh. Summit này giới thiệu những tiến bộ mới nhất trong lĩnh vực robotics và trí tuệ nhân tạo.",
+  "fullDescription": "Tech Summit 2026 là một sự kiện độc đáo kết hợp giáo dục, giải trí và công nghệ hiện đại. Các khách tham quan sẽ có cơ hội tương tác trực tiếp với các robot tiếp tân thông minh, khám phá các triển lãm tương tác, và tìm hiểu về tương lai của công nghệ và con người, adu hay nha bro :))).",
+  "location": "Trung Tâm Hội Nghị & Triển Lãm Quốc Gia, TPHCM, Việt Nam",
+  "address": "Số 1 VVN, TP Thủ ĐỨc",
+  "phone": "+84 123456789",
+  "email": "info@futuretech-exhibition.vn",
+  "website": "www.futuretech-exhibition.vn",
+  "openingHours": {
+    "weekday": "08:00 - 18:00",
+    "weekend": "09:00 - 20:00"
+  },
+  "startDate": "2024-03-15",
+  "endDate": "2024-05-31",
+  "events": [
+    {
+      "id": 1,
+      "title": "Demo Chào Mừng & Dẫn Đường Robot",
+      "time": "10:00 - 11:00",
+      "description": "Trải nghiệm khả năng dẫn đường và giao tiếp của robot tiếp tân"
+    },
+    {
+      "id": 2,
+      "title": "Hội Thảo AI Cho Người Mới Bắt Đầu",
+      "time": "13:00 - 14:30",
+      "description": "Hội thảo giới thiệu kiến thức cơ bản về Trí Tuệ Nhân Tạo"
+    },
+    {
+      "id": 3,
+      "title": "Trình Diễn Robot Làm Đồ Án",
+      "time": "15:00 - 16:30",
+      "description": "Kể về kỉ niệm làm đồ án"
+    },
+    {
+      "id": 4,
+      "title": "Nói Chuyện Về Tầm Nhìn Tương Lai",
+      "time": "17:00 - 18:00",
+      "description": "Nói chuyện về tương lai của công nghệ và xã hội"
+    }
+  ],
+  "highlights": [
+    {
+      "icon": "🤖",
+      "title": "Robot Tiếp Tân Thông Minh",
+      "description": "Công nghệ AI tiên tiến giúp robot hiểu và phản hồi theo tự nhiên"
+    },
+    {
+      "icon": "🗺️",
+      "title": "Hệ Thống Dẫn Đường",
+      "description": "Robot tự động định vị và hướng dẫn khách tham quan trong triển lãm"
+    },
+    {
+      "icon": "📊",
+      "title": "Phân Tích Dữ Liệu Real-time",
+      "description": "Theo dõi hiệu suất và lưu lượng khách tham quan trong thời gian thực"
+    },
+    {
+      "icon": "💬",
+      "title": "Giao Tiếp Đa Ngôn Ngữ",
+      "description": "Robot hỗ trợ nhiều ngôn ngữ để phục vụ du khách quốc tế"
+    }
+  ]
+}
