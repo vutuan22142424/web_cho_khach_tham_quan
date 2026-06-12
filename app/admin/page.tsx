@@ -17,7 +17,7 @@ import robot from '@/public/data/robot.json';
 
 export default function AdminDashboard() {
   const router = useRouter();
-  const { brokerUrl } = useMQTTBrokerUrl();
+  const { brokerUrl, mqttUser, mqttPass } = useMQTTBrokerUrl();
 
   const [editMode, setEditMode]       = useState(false);
   const [battery, setBattery]         = useState<number | null>(null);
@@ -30,6 +30,8 @@ export default function AdminDashboard() {
     if (!brokerUrl) return;
 
     const client = mqtt.connect(brokerUrl, {
+      username: mqttUser,  // ← thêm
+      password: mqttPass,  // ← thêm
       connectTimeout: 5000,
       reconnectPeriod: 3000,
     });

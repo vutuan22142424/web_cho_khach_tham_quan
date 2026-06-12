@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 
 const STORAGE_KEY = 'mqtt_broker_url';
 const DEFAULT_URL = process.env.NEXT_PUBLIC_MQTT_BROKER ?? 'ws://172.24.36.100:9001';
+const MQTT_USER    = process.env.NEXT_PUBLIC_MQTT_USER ?? '';
+const MQTT_PASS    = process.env.NEXT_PUBLIC_MQTT_PASS ?? '';
 
 export function useMQTTBrokerUrl() {
   const [brokerUrl, setBrokerUrlState] = useState<string>(DEFAULT_URL);
@@ -21,5 +23,5 @@ export function useMQTTBrokerUrl() {
     setBrokerUrlState(DEFAULT_URL);
   };
 
-  return { brokerUrl, setBrokerUrl, resetToDefault, defaultUrl: DEFAULT_URL };
+  return { brokerUrl, setBrokerUrl, resetToDefault, defaultUrl: DEFAULT_URL,mqttUser: MQTT_USER, mqttPass: MQTT_PASS, };
 }

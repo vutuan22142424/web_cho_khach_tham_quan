@@ -14,7 +14,7 @@ import exhibition from "@/public/data/exhibition.json";
 import robot from "@/public/data/robot.json";
 
 export default function Home() {
-  const { brokerUrl } = useMQTTBrokerUrl();
+  const { brokerUrl, mqttUser, mqttPass } = useMQTTBrokerUrl();
 
   const [battery, setBattery]         = useState<number | null>(null);
   const [robotState, setRobotState]   = useState<string | null>(null);
@@ -26,6 +26,8 @@ export default function Home() {
     if (!brokerUrl) return;
 
     const client = mqtt.connect(brokerUrl, {
+      username: mqttUser,  // ← thêm
+      password: mqttPass,  // ← thêm
       connectTimeout: 5000,
       reconnectPeriod: 3000,
     });
