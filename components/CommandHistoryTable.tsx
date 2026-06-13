@@ -49,14 +49,14 @@ function Badge({ status }: { status: string }) {
 }
 
 export function CommandHistoryTable() {
-  const [data, setData]         = useState<CommandDoc[]>([]);
-  const [filter, setFilter]     = useState('');
+  const [data, setData]         = useState<CommandDoc[]>([]); // danh sách lệnh
+  const [filter, setFilter]     = useState('');  // filter theo status
   const [expanded, setExpanded] = useState<string | null>(null);
   const [loading, setLoading]   = useState(true);
 
   useEffect(() => {
     const fetchData = () => {
-      const url = filter ? `/api/commands?status=${filter}` : `/api/commands`;
+      const url = filter ? `/api/commands?status=${filter}` : `/api/commands`; // kiểm tra xem có cần lọc theo filter không 
       fetch(url)
         .then(r => r.json())
           .then(d => {
@@ -77,7 +77,7 @@ export function CommandHistoryTable() {
   const deleteCommand = async (id: string) => {
     if (!confirm('Xóa lệnh này?')) return;
     await fetch(`/api/commands/${id}`, { method: 'DELETE' });
-    setData(prev => prev.filter(d => d._id !== id));
+    setData(prev => prev.filter(d => d._id !== id)); // xóa khỏi UI ngay
   };
 
   const rows = filter ? data.filter(d => d.latestStatus === filter) : data;

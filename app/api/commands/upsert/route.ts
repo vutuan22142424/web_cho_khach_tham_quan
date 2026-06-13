@@ -4,13 +4,14 @@ import CommandHistory from '@/models/CommandHistory';
 
 export async function POST(req: NextRequest) {
   try {
-    await connectDB();
+    await connectDB(); // Nhận dữ liệu từ body request
     const { command_id, status, eventId } = await req.json();  // ← thêm eventId
+    // Ví dụ: { command_id: "cmd_001", status: "EXECUTING", eventId: "cmd_001_EXECUTING_1234" }
 
-    if (!command_id || !status)
+    if (!command_id || !status) // bắt buộc phải có 2 thằng này
       return NextResponse.json({ error: 'Thiếu dữ liệu' }, { status: 400 });
 
-    const filter: Record<string, any> = { command_id };
+    const filter: Record<string, any> = { command_id }; // tránh trùng 
     if (eventId) {
       filter['events.eventId'] = { $ne: eventId };  // ← chỉ check nếu có eventId
     }
@@ -22,7 +23,7 @@ export async function POST(req: NextRequest) {
         $set:         { latestStatus: status, updatedAt: new Date() },
         $setOnInsert: { createdAt: new Date() },
       },
-      { upsert: true, new: true }
+      { upsert: true, new: true } // Nếu không tìm thấy → TẠO MỚI document
     );
 
     return NextResponse.json(result, {

@@ -46,7 +46,7 @@ export default function AdminDashboard() {
     client.subscribe('robot/state/service_feedback');
     client.on('message', (topic, message) => {
       const payload = message.toString();
-      if (topic === 'robot/state/service_feedback') {
+      if (topic === 'robot/state/service_feedback') { /////////////////////// cần note kĩ
           const parsed = JSON.parse(payload);
           const inner = parsed?.data ?? parsed;
           fetch('/api/commands/upsert', {
