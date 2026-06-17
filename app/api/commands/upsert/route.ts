@@ -16,15 +16,16 @@ export async function POST(req: NextRequest) {
       filter['events.eventId'] = { $ne: eventId };  // ← chỉ check nếu có eventId
     }
 
-    const result = await CommandHistory.findOneAndUpdate(
-      filter,
-      {
-        $push:        { events: { status, timestamp: new Date(), eventId } },  // ← thêm eventId
-        $set:         { latestStatus: status, updatedAt: new Date() },
-        $setOnInsert: { createdAt: new Date() },
-      },
-      { upsert: true, new: true } // Nếu không tìm thấy → TẠO MỚI document
-    );
+// Thêm vào events array, tự động bỏ qua nếu eventId đã tồn tại
+      const result = await CommandHistory.findOneAndUpdate(
+        { command_id },
+        {
+          $addToSet: { events: { status, timestamp: new Date(), eventId } }, // ← thay $push
+          $set:      { latestStatus: status, updatedAt: new Date() },
+          $setOnInsert: { createdAt: new Date() },
+        },
+        { upsert: true, new: true }
+      );
 
     return NextResponse.json(result, {
       headers: {

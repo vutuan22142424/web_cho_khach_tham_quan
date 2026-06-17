@@ -42,8 +42,9 @@ export default function AdminDashboard() {
       client.subscribe('robot/battery/soc');
       client.subscribe('robot/state/state');
       client.subscribe('robot/state/pose');
+      client.subscribe('robot/state/service_feedback');
     });
-    client.subscribe('robot/state/service_feedback');
+
     client.on('message', (topic, message) => {
       const payload = message.toString();
       if (topic === 'robot/state/service_feedback') { /////////////////////// cần note kĩ
