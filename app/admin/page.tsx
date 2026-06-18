@@ -25,7 +25,7 @@ export default function AdminDashboard() {
   const [pose, setPose]               = useState<{ x: number; y: number; yaw: number } | null>(null);
   const [isConnected, setIsConnected] = useState(false);
   const mqttClientRef                 = useRef<any>(null);
-  
+  const sentEventIdsRef = useRef<Set<string>>(new Set()); // thêm cùng các ref khác
   useEffect(() => {
     if (!brokerUrl) return;
 
@@ -47,19 +47,21 @@ export default function AdminDashboard() {
 
     client.on('message', (topic, message) => {
       const payload = message.toString();
-      if (topic === 'robot/state/service_feedback') { /////////////////////// cần note kĩ
-          const parsed = JSON.parse(payload);
-          const inner = parsed?.data ?? parsed;
-          fetch('/api/commands/upsert', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              command_id: inner.command_id,
-              status: inner.status,
-              eventId: `${inner.command_id}_${inner.status}_${Date.now()}`,
-            }),
-          }).catch(err => console.error('❌ Lưu lỗi:', err));
-        }
+      if (topic === 'robot/state/service_feedback') {
+        const parsed = JSON.parse(payload);
+        const inner = parsed?.data ?? parsed;
+
+        const eventId = `${inner.command_id}_${inner.status}`; // bỏ Date.now()
+
+        if (sentEventIdsRef.current.has(eventId)) return; // chặn gọi API thừa
+        sentEventIdsRef.current.add(eventId);
+
+        fetch('/api/commands/upsert', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ command_id: inner.command_id, status: inner.status, eventId }),
+        }).catch(err => console.error('❌ Lưu lỗi:', err));
+      }
       else if (topic === 'robot/battery/soc') {
         const value = Number(payload);
         if (!isNaN(value)) setBattery(value);
