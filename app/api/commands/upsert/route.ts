@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     command_id = body.command_id;
-    status = body.status;
+    status = body.status?.toUpperCase();
     eventId = body.eventId;
 
     await connectDB();
@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
     let finalDoc = await CommandHistory.findOneAndUpdate(
       {
         command_id,
-        'events.eventId': { $ne: safeEventId },
+        latestStatus: { $ne: status }, // Ngăn chặn ghi nhận trạng thái trùng lặp liên tiếp
       },
       {
         $set: { latestStatus: status, updatedAt: new Date() },

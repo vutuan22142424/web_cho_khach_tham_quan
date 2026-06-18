@@ -33,7 +33,7 @@ type CommandDoc = {
 };
 
 function sc(s: string) {
-  return SC[s] ?? { bg: '#EEEDFE', color: '#3C3489', dot: '#AFA9EC' };
+  return SC[s?.toUpperCase()] ?? { bg: '#EEEDFE', color: '#3C3489', dot: '#AFA9EC' };
 }
 
 function Badge({ status }: { status: string }) {
@@ -43,7 +43,7 @@ function Badge({ status }: { status: string }) {
       className="text-[11px] font-medium px-2 py-0.5 rounded-full whitespace-nowrap"
       style={{ background: c.bg, color: c.color }}
     >
-      {status}
+      {status?.toUpperCase()}
     </span>
   );
 }
@@ -80,7 +80,7 @@ export function CommandHistoryTable() {
     setData(prev => prev.filter(d => d._id !== id)); // xóa khỏi UI ngay
   };
 
-  const rows = filter ? data.filter(d => d.latestStatus === filter) : data;
+  const rows = filter ? data.filter(d => d.latestStatus?.toUpperCase() === filter.toUpperCase()) : data;
 
   return (
     <div className="space-y-4">

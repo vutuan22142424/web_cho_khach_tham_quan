@@ -104,7 +104,7 @@ export default function AdminDashboard() {
     }
     const ok = confirm('⚠️ Xác nhận DỪNG KHẨN CẤP robot?');
     if (!ok) return;
-    mqttClientRef.current.publish('robot/powerswitch/cmd', '"force_off"');
+    mqttClientRef.current.publish('robot/powerswitch/cmd', 'force_off');
     console.log('🛑 Đã gửi lệnh DỪNG KHẨN CẤP');
   };
 
@@ -115,7 +115,7 @@ export default function AdminDashboard() {
     }
     const ok = confirm('⏸️ Bạn muốn TẠM DỪNG robot?');
     if (!ok) return;
-    mqttClientRef.current.publish('robot/powerswitch/cmd', '"off"');
+    mqttClientRef.current.publish('robot/powerswitch/cmd', 'off');
     console.log('⏸️ Đã gửi lệnh TẠM DỪNG');
   };
 
